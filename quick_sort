@@ -1,0 +1,165 @@
+	.file	"quick_sort.c"
+	.text
+	.globl	quicksort
+	.type	quicksort, @function
+quicksort:
+.LFB0:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movq	%rdi, -24(%rbp)
+	movl	%esi, -28(%rbp)
+	movl	%edx, -32(%rbp)
+	movl	-28(%rbp), %eax
+	movl	%eax, -4(%rbp)
+	movl	-32(%rbp), %eax
+	movl	%eax, -8(%rbp)
+	movl	-32(%rbp), %eax
+	movl	-28(%rbp), %edx
+	addl	%edx, %eax
+	movl	%eax, %edx
+	shrl	$31, %edx
+	addl	%edx, %eax
+	sarl	%eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-24(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	movl	%eax, -12(%rbp)
+	jmp	.L2
+.L7:
+	jmp	.L3
+.L4:
+	addl	$1, -4(%rbp)
+.L3:
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-24(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	cmpl	-12(%rbp), %eax
+	jl	.L4
+	jmp	.L5
+.L6:
+	subl	$1, -8(%rbp)
+.L5:
+	movl	-8(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-24(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	cmpl	-12(%rbp), %eax
+	jg	.L6
+	movl	-4(%rbp), %eax
+	cmpl	-8(%rbp), %eax
+	jg	.L2
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-24(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	movl	%eax, -16(%rbp)
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-24(%rbp), %rax
+	addq	%rax, %rdx
+	movl	-8(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rcx
+	movq	-24(%rbp), %rax
+	addq	%rcx, %rax
+	movl	(%rax), %eax
+	movl	%eax, (%rdx)
+	movl	-8(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-24(%rbp), %rax
+	addq	%rax, %rdx
+	movl	-16(%rbp), %eax
+	movl	%eax, (%rdx)
+	addl	$1, -4(%rbp)
+	subl	$1, -8(%rbp)
+.L2:
+	movl	-4(%rbp), %eax
+	cmpl	-8(%rbp), %eax
+	jle	.L7
+	movl	-28(%rbp), %eax
+	cmpl	-8(%rbp), %eax
+	jge	.L8
+	movl	-8(%rbp), %edx
+	movl	-28(%rbp), %ecx
+	movq	-24(%rbp), %rax
+	movl	%ecx, %esi
+	movq	%rax, %rdi
+	call	quicksort
+.L8:
+	movl	-4(%rbp), %eax
+	cmpl	-32(%rbp), %eax
+	jge	.L1
+	movl	-32(%rbp), %edx
+	movl	-4(%rbp), %ecx
+	movq	-24(%rbp), %rax
+	movl	%ecx, %esi
+	movq	%rax, %rdi
+	call	quicksort
+.L1:
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE0:
+	.size	quicksort, .-quicksort
+	.globl	main
+	.type	main, @function
+main:
+.LFB1:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$96, %rsp
+	movl	%edi, -84(%rbp)
+	movq	%rsi, -96(%rbp)
+	movl	$7, -80(%rbp)
+	movl	$2, -76(%rbp)
+	movl	$9, -72(%rbp)
+	movl	$18, -68(%rbp)
+	movl	$54, -64(%rbp)
+	movl	$79, -60(%rbp)
+	movl	$101, -56(%rbp)
+	movl	$8, -52(%rbp)
+	movl	$9, -48(%rbp)
+	movl	$21, -44(%rbp)
+	movl	$34, -40(%rbp)
+	movl	$66, -36(%rbp)
+	movl	$1, -32(%rbp)
+	movl	$0, -28(%rbp)
+	movl	$102, -24(%rbp)
+	movl	$19, -20(%rbp)
+	movl	$0, -4(%rbp)
+	movl	$15, -8(%rbp)
+	movl	-8(%rbp), %edx
+	movl	-4(%rbp), %ecx
+	leaq	-80(%rbp), %rax
+	movl	%ecx, %esi
+	movq	%rax, %rdi
+	call	quicksort
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE1:
+	.size	main, .-main
+	.ident	"GCC: (GNU) 4.8.5 20150623 (Red Hat 4.8.5-16)"
+	.section	.note.GNU-stack,"",@progbits
