@@ -1,0 +1,5 @@
+	 Data_size, 	 Inst_Data_Occ, 	 Block_Data_Occ,	 Func_Data_Occ,
+W,	 4, 		 19,
+W,	 8, 		 3,
+R,	 4, 		 2,
+R,	 8, 		 2,
