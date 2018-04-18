@@ -21,6 +21,9 @@ int main (int argc, const char* argv[])
 		}
 	    }
 	}
-	
+	for(i = 0; i < 16; i++)
+	{
+		printf("%d ", a[i]);
+	}
 
 };
